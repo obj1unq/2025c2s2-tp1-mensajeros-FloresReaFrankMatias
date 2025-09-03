@@ -1,20 +1,15 @@
 
 
 object empresa {
-  
 	method paqueteFueEntregadoADestino(mensajero, destino) {
 	  return paquete.pago() && destino.dejaPasarA(mensajero)
 	}
 
 }
 
-
-
 object paquete {
-	var  property   pago = true	
-
+	var  property  pago = true	
 }
-
 //Destinos
 //--------------------------------------------------------
 
@@ -48,27 +43,21 @@ object neo {
 
 object sara {
 	var property  pesoCorporal = 0
-	var vehiculo = moto
+	var  property  vehiculo = moto
 	var  property  llamar = false
 
 	method peso() {
 	  return  pesoCorporal + vehiculo.peso() 
 	}
-	method cambiarVehiculo(_vehiculo) {
-	  vehiculo = _vehiculo
-	}
-
 }
 
-//------------------------------------
-
-//   VEHICULOS
+//------------------------------- VEHICULOS      ---------------------
+ 
 object moto {
 	
 	method peso() = 100  
 
 }
-
 object camion {
 	var property peso = 500
 	var property pesoAcoplado = 500
@@ -80,19 +69,3 @@ object camion {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
