@@ -1,9 +1,30 @@
 
 import mensajeros.*
 
-describe "priemr test"{
+describe "primer test"{
 
-    test "Sara con vehiculo camion de 2 acoplados"{
+    test "Sara Vehiculo" {
+      sara.vehiculo(moto)
+      assert.equals(moto, sara.vehiculo())
+      sara.vehiculo(camion)
+      assert.equals(camion, sara.vehiculo() )  
+    }
+    test "Paquete  no pago" {
+      paquete.pago(false)
+      assert.equals(false, paquete.pago())
+    }
+    test "Paquete pago " { 
+      paquete.pago(true)
+      assert.equals(true, paquete.pago())
+    }
+
+    test "Peso del camion con acoplados" {
+      camion.acoplados(2)
+      assert.equals(2, camion.acoplados())
+      assert.equals(1500, camion.peso())
+    }
+
+    test "PuenteBrooklyn deja pasar a Sara con vehiculo camion de 2 acoplados"{
         sara.vehiculo(camion)
         assert.equals(camion, sara.vehiculo())
         sara.pesoCorporal(70)
@@ -11,12 +32,17 @@ describe "priemr test"{
         assert.equals(1500, camion.peso())
         assert.equals(false, puenteBrooklyn.dejaPasarA(sara) )
     }
+    test "Matrix no deja pasar a jeangrey si no puede llamar" {
+      jeanGrey.puedeLlamar(false)
+      assert.equals(false, sara.puedeLlamar())
+      assert.equals(false, matrix.dejaPasarA(jeanGrey) )
+    }
 
-
-    test "1: Paquete no pago, llevado Por Neo a Matrix"{
+    test " Paquete no pago, llevado Por Neo a Matrix"{
         paquete.pago(false)
         assert.equals(false, paquete.pago())
-        assert.equals(false,empresa.paqueteFueEntregadoADestino(neo, matrix))
+        paquete.destino(matrix)
+        assert.equals(false, paquete.pudoEntregarseADestinoPor (neo))
 
     }
 
@@ -24,27 +50,30 @@ describe "priemr test"{
       paquete.pago(true)
       assert.equals(true, paquete.pago())
       assert.equals(true,matrix.dejaPasarA(jeanGrey))   
-      assert.equals(true,empresa.paqueteFueEntregadoADestino(jeanGrey, matrix))
+      paquete.destino(matrix)
+      assert.equals(true,paquete.pudoEntregarseADestinoPor(jeanGrey))
 
     }
 
-    test "Paquete pago, llevado pro Sara A Brooklyn con camion de 1 acoplado" {
+    test "Paquete pago, llevado por Sara A Brooklyn con camion de 1 acoplado" {
         camion.acoplados(1)
         assert.equals(1, camion.acoplados())
         sara.pesoCorporal(70)
         sara.vehiculo(camion)
         assert.equals(camion, sara.vehiculo())
         paquete.pago(true)
-        assert.equals(false,empresa.paqueteFueEntregadoADestino(sara, puenteBrooklyn))    
+        paquete.destino(puenteBrooklyn)
+        assert.equals(false,paquete.pudoEntregarseADestinoPor(sara))    
     }
 
-    test "Paquete pago, llevado pro Sara A Brooklyn con moto de 1 acoplado" {
+    test "Paquete pago, llevado por Sara A Brooklyn con moto de 1 acoplado" {
         sara.pesoCorporal(70)
         assert.equals(70, sara.pesoCorporal())
         sara.vehiculo(moto)
         assert.equals(moto, sara.vehiculo())
         paquete.pago(true)
-        assert.equals(true,empresa.paqueteFueEntregadoADestino(sara, puenteBrooklyn))    
+        paquete.destino(puenteBrooklyn)
+        assert.equals(true,paquete.pudoEntregarseADestinoPor(sara))    
     }
 
 

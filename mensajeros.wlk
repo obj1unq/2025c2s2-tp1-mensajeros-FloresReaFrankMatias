@@ -1,17 +1,17 @@
 
 
-object empresa {
-	method paqueteFueEntregadoADestino(mensajero, destino) {
-	  return paquete.pago() && destino.dejaPasarA(mensajero)
-	}
-
-}
+//-----------------------------------  PAQUETE   --------------------------------------------------------
 
 object paquete {
 	var  property  pago = true	
+	var property destino = matrix 
+
+	method pudoEntregarseADestinoPor(mensajero) {
+		return self.pago() && destino.dejaPasarA(mensajero) 
+	}
+
 }
-//Destinos
-//--------------------------------------------------------
+//-----------------------------------Destinos--------------------------------------------------------
 
 object puenteBrooklyn{
 
@@ -23,7 +23,7 @@ object puenteBrooklyn{
 object matrix{
 
 	method dejaPasarA(mensajero) {
-	  return  mensajero.llamar()
+	  return  mensajero.puedeLlamar()
 	}
 
 }
@@ -33,18 +33,22 @@ object matrix{
 object jeanGrey {
 	var property peso =  65
 	var property llamar = true
+	var property puedeLlamar = true 
 }
 
 object neo {
-	var property  llamar = true
+	var property  tieneCredito = true
 	var property  peso   = 0 
+	method puedeLlamar() {
+	  return tieneCredito
+	}
 
 }
 
 object sara {
 	var property  pesoCorporal = 0
 	var  property  vehiculo = moto
-	var  property  llamar = false
+	var  property  puedeLlamar = false
 
 	method peso() {
 	  return  pesoCorporal + vehiculo.peso() 
@@ -65,7 +69,8 @@ object camion {
 	
 
 	method peso() {
-	  return peso + ( self.acoplados()* pesoAcoplado) 
+	  return peso + ( self.acoplados() * pesoAcoplado) 
 	}
 
 }
+//--------------------------------------------------------------------------
